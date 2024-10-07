@@ -22,3 +22,22 @@ class JobInputWidget(QWidget):
         layout.addWidget(self.submit_button)
 
         self.setLayout(layout)
+
+
+# job_input_widget.py
+class JobInputWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        # ... [Phần mã khác không thay đổi] ...
+
+        self.submit_button.clicked.connect(self.submit_job)
+
+    def submit_job(self):
+        job_name = self.job_name_input.text()
+        material = self.material_input.text()
+        size = self.size_input.text()
+
+        # Ghi lại thông tin vào console hoặc xử lý thêm
+        print(f"Job Name: {job_name}, Material: {material}, Size: {size}")
+
+        # Có thể gọi hàm import_data ở đây nếu cần
