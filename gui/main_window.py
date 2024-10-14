@@ -1,5 +1,9 @@
-# main_window.py
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QMainWindow, QTabWidget
+from gui.import_data_tab import ImportDataTab
+from gui.display_data_tab import DisplayDataTab
+from gui.input_parameters_tab import InputParametersTab
+from gui.breakdown_processing_tab import BreakdownProcessingTab
+from gui.display_design_tab import DisplayDesignTab
 
 
 class MainWindow(QMainWindow):
@@ -7,17 +11,15 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("Tiedown")
 
-        layout = QVBoxLayout()
+        self.tabs = QTabWidget()
+        self.setCentralWidget(self.tabs)
 
-        label = QLabel("Welcome to Tiedown")
-        button = QPushButton("Start")
-        layout.addWidget(label)
-        layout.addWidget(button)
+        self.create_tabs()
 
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
+    def create_tabs(self):
+        self.tabs.addTab(InputParametersTab(), "Project Information")
+        self.tabs.addTab(ImportDataTab(), "Import Data")
+        self.tabs.addTab(DisplayDataTab(), "Display Data")
 
-    def setup_buttons(self):
-        # Thêm logic xử lý cho các nút ở đây
-        pass
+        self.tabs.addTab(BreakdownProcessingTab(), "Breakdown Processing")
+        self.tabs.addTab(DisplayDesignTab(), "Display Design")
